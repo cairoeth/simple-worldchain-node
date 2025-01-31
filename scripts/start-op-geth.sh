@@ -21,6 +21,7 @@ fi
 # Start op-geth.
 exec geth \
   --datadir=/data \
+  --datadir.ancient=/data/ancient \
   --http \
   --http.corsdomain="*" \
   --http.vhosts="*" \

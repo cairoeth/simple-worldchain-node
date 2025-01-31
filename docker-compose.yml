@@ -13,6 +13,7 @@ services:
       - ./scripts/:/scripts
       - shared:/shared
       - op_geth:/data
+      - /mnt/ancient-data:/data/ancient
     ports:
       - ${PORT__EXECUTION_HTTP:-9993}:8545
       - ${PORT__EXECUTION_WS:-9994}:8546
