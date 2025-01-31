@@ -21,13 +21,8 @@ fi
 # Ensure the ancient directory exists
 mkdir -p /mnt/ancient-data
 
-# If there's data in the default ancient location, move it to the mounted location
-if [ -d "/data/ancient" ] && [ "$(ls -A /data/ancient)" ]; then
-  echo "Moving existing ancient data to mounted volume..."
-  cp -r /data/ancient/* /mnt/ancient-data/
-  rm -rf /data/ancient
-  echo "Ancient data migration completed"
-fi
+# Ensure proper permissions
+chmod -R 775 /mnt/ancient-data
 
 # Start op-geth.
 exec geth \
