@@ -18,10 +18,21 @@ elif [ "$NETWORK_NAME" = "worldchain-sepolia" ]; then
   export HOLOCENE_TIMESTAMP=1737633600
 fi
 
+# Ensure the ancient directory exists
+mkdir -p /mnt/ancient-data
+
+# If there's data in the default ancient location, move it to the mounted location
+if [ -d "/data/ancient" ] && [ "$(ls -A /data/ancient)" ]; then
+  echo "Moving existing ancient data to mounted volume..."
+  cp -r /data/ancient/* /mnt/ancient-data/
+  rm -rf /data/ancient
+  echo "Ancient data migration completed"
+fi
+
 # Start op-geth.
 exec geth \
   --datadir=/data \
-  --datadir.ancient=/data/ancient \
+  --datadir.ancient=/mnt/ancient-data \
   --http \
   --http.corsdomain="*" \
   --http.vhosts="*" \
