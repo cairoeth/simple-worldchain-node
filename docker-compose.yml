@@ -28,6 +28,9 @@ services:
     restart: unless-stopped
     stop_grace_period: 5m
     entrypoint: /scripts/start-op-reth.sh
+    group_add:
+      - "1001"  # storage-users GID
+    user: "1000:1001"  # UID:GID (storage-users)
     ports:
       - 127.0.0.1:${PORT__EXECUTION_HTTP:-9993}:8545
       - 127.0.0.1:${PORT__EXECUTION_WS:-9994}:8546
@@ -35,7 +38,7 @@ services:
       - ${PORT__EXECUTION_P2P:-39393}:${PORT__EXECUTION_P2P:-39393}/tcp
     volumes:
         - ./envs/${NETWORK_NAME}/config:/chainconfig
-        - op_reth:/data
+        - /mnt/reth-data:/data
         - ./scripts/:/scripts
         - shared:/shared
     env_file:
