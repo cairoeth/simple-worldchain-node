@@ -102,4 +102,3 @@ volumes:
   influxdb_data:
   shared:
   op_geth:
-  op_reth:
