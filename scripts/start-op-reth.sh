@@ -2,7 +2,8 @@
 set -eu
 
 exec op-reth node \
-  --datadir=/data \
+  --datadir=/reth/data \
+  --log.file.directory=/reth/logs \
   --log.stdout.format log-fmt \
   --ws \
   --ws.origins="*" \

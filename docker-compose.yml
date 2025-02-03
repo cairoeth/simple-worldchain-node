@@ -38,7 +38,7 @@ services:
       - ${PORT__EXECUTION_P2P:-39393}:${PORT__EXECUTION_P2P:-39393}/tcp
     volumes:
         - ./envs/${NETWORK_NAME}/config:/chainconfig
-        - /mnt/reth-data:/data
+        - /mnt/reth:/reth
         - ./scripts/:/scripts
         - shared:/shared
     env_file:
