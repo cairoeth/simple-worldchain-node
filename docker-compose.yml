@@ -100,4 +100,3 @@ volumes:
   grafana_data:
   influxdb_data:
   shared:
-  op_geth:
