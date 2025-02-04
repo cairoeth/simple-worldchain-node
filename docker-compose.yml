@@ -5,6 +5,9 @@ services:
     restart: unless-stopped
     stop_grace_period: 5m
     entrypoint: /scripts/start-op-geth.sh
+    group_add:
+      - "1001"
+    user: "1000:1001"
     env_file:
       - ./envs/${NETWORK_NAME}/execution.env
       - .env
@@ -28,8 +31,8 @@ services:
     stop_grace_period: 5m
     entrypoint: /scripts/start-op-reth.sh
     group_add:
-      - "1001"  # storage-users GID
-    user: "1000:1001"  # UID:GID (storage-users)
+      - "1001"
+    user: "1000:1001"
     ports:
       - 127.0.0.1:${PORT__EXECUTION_HTTP:-9993}:8545
       - 127.0.0.1:${PORT__EXECUTION_WS:-9994}:8546
