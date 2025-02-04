@@ -12,8 +12,7 @@ services:
       - ./envs/${NETWORK_NAME}/config:/chainconfig
       - ./scripts/:/scripts
       - shared:/shared
-      - op_geth:/data
-      - /mnt/ancient-data:/mnt/ancient-data
+      - /mnt/geth:/geth
     ports:
       - 127.0.0.1:${PORT__EXECUTION_HTTP:-9993}:8545
       - 127.0.0.1:${PORT__EXECUTION_WS:-9994}:8546

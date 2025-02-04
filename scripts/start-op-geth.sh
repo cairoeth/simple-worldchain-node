@@ -18,16 +18,10 @@ elif [ "$NETWORK_NAME" = "worldchain-sepolia" ]; then
   export HOLOCENE_TIMESTAMP=1737633600
 fi
 
-# Ensure the ancient directory exists
-mkdir -p /mnt/ancient-data
-
-# Ensure proper permissions
-chmod -R 775 /mnt/ancient-data
-
 # Start op-geth.
 exec geth \
-  --datadir=/data \
-  --datadir.ancient=/mnt/ancient-data \
+  --datadir=/geth/data \
+  --datadir.ancient=/geth/ancient-data \
   --http \
   --http.corsdomain="*" \
   --http.vhosts="*" \
